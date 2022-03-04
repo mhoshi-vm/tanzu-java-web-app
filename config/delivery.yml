@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: tanzu-java-web-app
   labels:
-    apps.tanzu.vmware.com/has-tests: "true"
+    app.kubernetes.io/part-of: tanzu-java-web-app
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/component: run
     carto.run/workload-name: tanzu-java-web-app
@@ -24,7 +24,7 @@ spec:
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
-        apps.tanzu.vmware.com/has-tests: "true"
+        app.kubernetes.io/part-of: tanzu-java-web-app
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: tanzu-java-web-app
         conventions.apps.tanzu.vmware.com/framework: spring-boot
@@ -36,7 +36,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.server.port="8080" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.lespaulstudioplus.info/tap/supply-chain/tanzu-java-web-app-default@sha256:f4ee994fa0fe8f65db003b32fc3791e1a3e3fb4862a26119f658c10d48834e0c
+        image: harbor.lespaulstudioplus.info/tap/supply-chain/tanzu-java-web-app-default@sha256:cd05de2959ce8aedd2b6f07148957b94719f15866e446745d129c66493f8c58c
         name: workload
         ports:
         - containerPort: 8080
