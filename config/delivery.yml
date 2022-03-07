@@ -11,22 +11,16 @@ spec:
   template:
     metadata:
       annotations:
-        apps.tanzu.vmware.com/live-update: "true"
-        autoscaling.knative.dev/maxScale: "1"
-        autoscaling.knative.dev/minScale: "1"
         boot.spring.io/actuator: http://:8080/actuator
         boot.spring.io/version: 2.5.8
         conventions.apps.tanzu.vmware.com/applied-conventions: |-
           appliveview-sample/app-live-view-connector
           appliveview-sample/app-live-view-appflavours
           appliveview-sample/app-live-view-systemproperties
-          developer-conventions/live-update-convention
-          developer-conventions/add-source-image-label
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
           spring-boot-convention/spring-boot-actuator
-        developer.apps.tanzu.vmware.com/image-source-digest: main/3028e98a1485b4916d7092f5353506fc513762c8
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -42,7 +36,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.server.port="8080" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.lespaulstudioplus.info/tap/supply-chain/tanzu-java-web-app-default@sha256:b0a0769cb2312d3ce86158357b9532318b32dadb439d2efe0cdbc0581ac1d55a
+        image: harbor.lespaulstudioplus.info/tap/supply-chain/tanzu-java-web-app-default@sha256:62d378bbac17432b3086038ef8d11edc207a41ae15693e44a51f99baa85bfaab
         name: workload
         ports:
         - containerPort: 8080
